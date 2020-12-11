@@ -62,9 +62,9 @@ Changes in my version of petzold-pw5e
 Bash commands to compile all examples with MinGW:
 -------------------------------------------------
 
-mkdir build
-cd build
-cmake .. -G "MinGW Makefiles"
-cd ..
-MAKEFLAGS=-k cmake --build build --target
+    mkdir build
+    cd build
+    cmake .. -G "MinGW Makefiles"
+    cd ..
+    MAKEFLAGS=-k cmake --build build --target
 
