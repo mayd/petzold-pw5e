@@ -2,7 +2,7 @@
    HEXCALC.DLG dialog script
   ---------------------------*/
 
-HexCalc DIALOG -1, -1, 102, 122
+HexCalc DIALOG 0, 0, 102, 122
 STYLE WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 CLASS "HexCalc"
 CAPTION "Hex Calculator"

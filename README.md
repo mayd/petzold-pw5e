@@ -51,3 +51,20 @@ Notes
 
 There are limited links to websites or internet sources on this page. Links can
  go stale. A search engine is your friend.
+
+
+Changes in my version of petzold-pw5e
+-------------------------------------
+
+* Changed CMakeList.txt so that resource files are compiled under MinGW.
+* Changed a line in HexCalc.dlg so that it compiles with MinGW windres resource compiler.
+
+Bash commands to compile all examples with MinGW:
+-------------------------------------------------
+
+mkdir build
+cd build
+cmake .. -G "MinGW Makefiles"
+cd ..
+MAKEFLAGS=-k cmake --build build --target
+

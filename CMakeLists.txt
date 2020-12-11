@@ -14,6 +14,11 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_WIN32_WINNT=0x0601 -DWINVER=0x0601")
 if (MSVC)
     # MSVC Compiler
 else ()
+    ENABLE_LANGUAGE(RC)
+    set(CMAKE_SHARED_LIBRARY_PREFIX_RC "")
+    set(CMAKE_SHARED_LIBRARY_PREFIX "")
+    set(CMAKE_STATIC_LIBRARY_PREFIX "")
+    set(CMAKE_RC_CREATE_SHARED_LIBRARY ${CMAKE_C_CREATE_SHARED_LIBRARY})
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Wpedantic -Wextra")
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Wall -Wpedantic -Wextra")
 endif ()
@@ -629,11 +634,14 @@ add_executable(Multi2 WIN32 "Chapter 20 Multitasking and Multithreading/Multi2/M
 
 # ================================================================== Chapter 21
 
+# BitLib.dll - required to be copied to exe directory
+
 add_executable(RndRctMT WIN32 "Chapter 20 Multitasking and Multithreading/RndRectMT/RndRctMT.c")
 add_executable(EdrTest WIN32 "Chapter 21 Dynamic-Link Libraries/EdrTest/EdrTest.c"
         "Chapter 21 Dynamic-Link Libraries/EdrTest/EdrLib.c")
 add_executable(ShowBit WIN32 "Chapter 21 Dynamic-Link Libraries/ShowBit/ShowBit.c"
         "Chapter 21 Dynamic-Link Libraries/ShowBit/BitLib.c")
+add_library(BitLib SHARED "Chapter 21 Dynamic-Link Libraries/ShowBit/BitLib.rc")
 add_executable(StrProg WIN32 "Chapter 21 Dynamic-Link Libraries/StrProg/StrProg.c"
         "Chapter 21 Dynamic-Link Libraries/StrProg/StrLib.c")
 
