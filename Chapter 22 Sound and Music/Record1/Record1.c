@@ -7,6 +7,7 @@
 #include <tchar.h>
 #include <windows.h>
 #include <mmsystem.h>
+#include <stdint.h>
 #include "Resource.h"
 
 #define INP_BUFFER_SIZE 16384
@@ -24,7 +25,7 @@ int WINAPI _tWinMain(
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(pCmdLine);
 
-	if (-1 == DialogBox(hInstance, TEXT("Record"), NULL, DlgProc))
+	if (-1 == DialogBox(hInstance, TEXT("Record"), NULL, (DLGPROC)DlgProc))
 	{
 		MessageBox(NULL, TEXT("This program requires Windows NT!"),
 			szAppName, MB_ICONERROR);
@@ -102,7 +103,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			waveform.cbSize = 0;
 
 			if (waveInOpen(&hWaveIn, WAVE_MAPPER, &waveform,
-				(DWORD)hwnd, 0, CALLBACK_WINDOW))
+				(DWORD)(uintptr_t)hwnd, 0, CALLBACK_WINDOW))
 			{
 				free(pBuffer1);
 				free(pBuffer2);
@@ -154,7 +155,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			waveform.cbSize = 0;
 
 			if (waveOutOpen(&hWaveOut, WAVE_MAPPER, &waveform,
-				(DWORD)hwnd, 0, CALLBACK_WINDOW))
+				(DWORD)(uintptr_t)hwnd, 0, CALLBACK_WINDOW))
 			{
 				MessageBeep(MB_ICONEXCLAMATION);
 				MessageBox(hwnd, szOpenError, szAppName,
@@ -213,7 +214,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			waveform.wBitsPerSample = 8;
 			waveform.cbSize = 0;
 
-			if (waveOutOpen(&hWaveOut, 0, &waveform, (DWORD)hwnd, 0,
+			if (waveOutOpen(&hWaveOut, 0, &waveform, (DWORD)(uintptr_t)hwnd, 0,
 				CALLBACK_WINDOW))
 			{
 				MessageBeep(MB_ICONEXCLAMATION);

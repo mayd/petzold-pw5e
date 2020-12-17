@@ -9,6 +9,7 @@
 #include <mmsystem.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdint.h>
 #include "./Resource.h"
 
 #define SAMPLE_RATE     11025
@@ -17,7 +18,7 @@
 #define FREQ_INIT         440
 #define OUT_BUFFER_SIZE  4096
 
-UINT_PTR CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
 
 TCHAR szAppName[] = TEXT("SineWave");
 
@@ -54,7 +55,7 @@ VOID FillBuffer(PBYTE pBuffer, int iFreq)
 	}
 }
 
-UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static BOOL         bShutOff, bClosing;
 	static HWAVEOUT     hWaveOut;
@@ -145,7 +146,7 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				waveformat.cbSize = 0;
 
 				if (waveOutOpen(&hWaveOut, WAVE_MAPPER, &waveformat,
-					(DWORD)hwnd, 0, CALLBACK_WINDOW)
+					(DWORD)(uintptr_t)hwnd, 0, CALLBACK_WINDOW)
 					!= MMSYSERR_NOERROR)
 				{
 					free(pWaveHdr1);

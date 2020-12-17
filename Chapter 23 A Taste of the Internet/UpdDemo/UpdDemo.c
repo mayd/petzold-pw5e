@@ -54,7 +54,7 @@ BOOL    CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
 VOID             FtpThread(PVOID);
 VOID             ButtonSwitch(HWND, HWND, TCHAR*);
 FILELIST* GetFileList(VOID);
-int              Compare(const FILEINFO*, const FILEINFO*);
+int              Compare(const void*, const void*);
 
 // A couple globals
 
@@ -195,7 +195,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			// Invoke dialog box
 
-			DialogBox(hInst, szAppName, hwnd, DlgProc);
+			DialogBox(hInst, szAppName, hwnd, (DLGPROC)DlgProc);
 
 		// Update display
 
@@ -499,7 +499,7 @@ FILELIST* GetFileList(void)
    Compare function for qsort
   ----------------------------*/
 
-int Compare(const FILEINFO * pinfo1, const FILEINFO * pinfo2)
+int Compare(const void *pinfo1, const void *pinfo2)
 {
-	return lstrcmp(pinfo2->szFilename, pinfo1->szFilename);
+	return lstrcmp(((FILEINFO *)pinfo2)->szFilename, ((FILEINFO *)pinfo1)->szFilename);
 }

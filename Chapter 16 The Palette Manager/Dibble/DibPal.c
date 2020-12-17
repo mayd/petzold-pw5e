@@ -501,9 +501,9 @@ static void CutBox (int * piCount, int iBoxCount, MINMAX mm,
    Compare routine for qsort
   ---------------------------*/
 
-static int Compare (const BOXES * pbox1, const BOXES * pbox2)
+static int Compare (const void *pbox1, const void *pbox2)
 {
-     return pbox1->iBoxCount - pbox2->iBoxCount ;
+     return ((BOXES *)pbox1)->iBoxCount - ((BOXES *)pbox2)->iBoxCount ;
 }
 
 /*-----------------------------------------------------------------

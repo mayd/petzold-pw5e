@@ -150,7 +150,7 @@ EXPORT int CALLBACK GetStringsW (GETSTRCB pfnGetStrCallBack, PVOID pParam)
 
      for (i = 0 ; i < iTotal ; i++)
      {
-          bReturn = pfnGetStrCallBack (szStrings[i], pParam) ;
+          bReturn = pfnGetStrCallBack ((PCTSTR)szStrings[i], pParam) ;
 
           if (bReturn == FALSE)
                return i + 1 ;

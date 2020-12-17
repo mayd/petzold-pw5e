@@ -54,7 +54,7 @@ int WINAPI _tWinMain(
 	UpdateWindow(hwnd);
 
 	hDlgModeless = CreateDialog(hInstance, TEXT("ColorScrDlg"),
-		hwnd, ColorScrDlg);
+		hwnd, (DLGPROC)ColorScrDlg);
 
 	while (GetMessage(&msg, NULL, 0, 0))
 	{

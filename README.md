@@ -46,22 +46,30 @@ Updating C source code
 - `#include <windows.x>` and use its macros where suitable. `Edit_GetSel()`
    being an example of one to avoid.
 
-Notes
------
+Notes:
+------
 
 There are limited links to websites or internet sources on this page. Links can
  go stale. A search engine is your friend.
 
+========================================================================================
 
-Changes in my version of petzold-pw5e
--------------------------------------
+Changes in my personal version of petzold-pw5e:
+-----------------------------------------------
 
-* Changed CMakeList.txt so that resource files are compiled under MinGW.
+17 December 2020
+
+* Changed CMakeList.txt so that all resource files are compiled with MSYS2/MinGW.
+
 * Changed a line in HexCalc.dlg so that it compiles with MinGW windres resource compiler.
 
-Bash commands to compile all examples with MinGW:
--------------------------------------------------
+* Edited various example C source files to eliminate MinGW compiler warnings.
 
+
+Bash commands to compile all examples with MSYS2/MinGW:
+-------------------------------------------------------
+
+    git clone https://github.com/mayd/petzold-pw5e
     mkdir build
     cd build
     cmake .. -G "MinGW Makefiles"

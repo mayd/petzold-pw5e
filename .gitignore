@@ -45,6 +45,7 @@ Programming Windows
 
 cmake-build-debug/
 cmake-build-release/
+build/
 out/build/
 out/install/
 .vs/

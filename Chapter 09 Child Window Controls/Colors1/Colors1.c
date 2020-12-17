@@ -8,7 +8,7 @@
 #include <windowsx.h>
 #include <tchar.h>
 #include <commctrl.h>
-
+#include <stdint.h>
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK ScrollProc(HWND, UINT, WPARAM, LPARAM, UINT_PTR, DWORD_PTR);
@@ -103,7 +103,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				WS_CHILD | WS_VISIBLE |
 				WS_TABSTOP | SBS_VERT,
 				0, 0, 0, 0,
-				hwnd, (HMENU)i, hInstance, NULL);
+				hwnd, (HMENU)(uintptr_t)i, hInstance, NULL);
 
 			SetScrollRange(hwndScroll[i], SB_CTL, 0, 255, FALSE);
 			SetScrollPos(hwndScroll[i], SB_CTL, 0, FALSE);
@@ -114,7 +114,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			hwndLabel[i] = CreateWindow(TEXT("static"), szColorLabel[i],
 				WS_CHILD | WS_VISIBLE | SS_CENTER,
 				0, 0, 0, 0,
-				hwnd, (HMENU)(i + N),
+				hwnd, (HMENU)(uintptr_t)(i + N),
 				hInstance, NULL);
 
 			// The three color-value text fields have IDs 6, 7,
@@ -123,7 +123,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			hwndValue[i] = CreateWindow(TEXT("static"), TEXT("0"),
 				WS_CHILD | WS_VISIBLE | SS_CENTER,
 				0, 0, 0, 0,
-				hwnd, (HMENU)(i + 2 * N),
+				hwnd, (HMENU)(uintptr_t)(i + 2 * N),
 				hInstance, NULL);
 
 			SetWindowSubclass(hwndScroll[i], ScrollProc, (UINT_PTR)i, 0);

@@ -6,6 +6,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <tchar.h>
+#include <stdint.h>
 
 #define DIVISIONS 5
 
@@ -84,7 +85,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				hwndChild[x][y] = CreateWindow(szChildClass, NULL,
 					WS_CHILDWINDOW | WS_VISIBLE,
 					0, 0, 0, 0,
-					hwnd, (HMENU)(y << 8 | x),
+					hwnd, (HMENU)(uintptr_t)(y << 8 | x),
 					(HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE),
 					NULL);
 		return 0;

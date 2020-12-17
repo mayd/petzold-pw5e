@@ -152,7 +152,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				hBitmap = CreateDIBSection(NULL,
 					pPackedDib,
 					DIB_RGB_COLORS,
-					&pBits,
+					(VOID **)&pBits,
 					NULL, 0);
 
 				// Copy the bits

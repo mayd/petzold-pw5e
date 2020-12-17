@@ -70,7 +70,7 @@ int WINAPI _tWinMain(
 	return (int)msg.wParam;  // WM_QUIT
 }
 
-AskConfirmation(HWND hwnd)
+int AskConfirmation(HWND hwnd)
 {
 	return MessageBox(hwnd, TEXT("Really want to close PopPad2?"),
 		szAppName, MB_YESNO | MB_ICONQUESTION);

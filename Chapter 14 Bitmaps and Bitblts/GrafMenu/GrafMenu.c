@@ -6,6 +6,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <windows.h>
+#include <stdint.h>
 #include "Resource.h"
 
 LRESULT CALLBACK WndProc (HWND, UINT, WPARAM, LPARAM) ;
@@ -132,7 +133,7 @@ void AddHelpToSys (HINSTANCE hInstance, HWND hwnd)
      hMenu = GetSystemMenu (hwnd, FALSE);
      hBitmap = StretchBitmap (LoadBitmap (hInstance, TEXT ("BitmapHelp"))) ;
      AppendMenu (hMenu, MF_SEPARATOR, 0, NULL) ;
-     AppendMenu (hMenu, MF_BITMAP, IDM_HELP, (PTSTR) (LONG) hBitmap) ;
+     AppendMenu (hMenu, MF_BITMAP, IDM_HELP, (PTSTR)(uintptr_t)hBitmap) ;
 }
 
 /*----------------------------------------------
@@ -149,13 +150,13 @@ HMENU CreateMyMenu (HINSTANCE hInstance)
 
      hMenuPopup = LoadMenu (hInstance, TEXT ("MenuFile")) ;
      hBitmap = StretchBitmap (LoadBitmap (hInstance, TEXT ("BitmapFile"))) ;
-     AppendMenu (hMenu, MF_BITMAP | MF_POPUP, (int) hMenuPopup,
-                        (PTSTR) (LONG) hBitmap) ;
+     AppendMenu (hMenu, MF_BITMAP | MF_POPUP, (int)(uintptr_t)hMenuPopup,
+                        (PTSTR)(uintptr_t)hBitmap) ;
 
      hMenuPopup = LoadMenu (hInstance, TEXT ("MenuEdit")) ;
      hBitmap = StretchBitmap (LoadBitmap (hInstance, TEXT ("BitmapEdit"))) ;
-     AppendMenu (hMenu, MF_BITMAP | MF_POPUP, (int) hMenuPopup,
-                        (PTSTR) (LONG) hBitmap) ;
+     AppendMenu (hMenu, MF_BITMAP | MF_POPUP, (int)(uintptr_t)hMenuPopup,
+                        (PTSTR)(uintptr_t)hBitmap) ;
 
      hMenuPopup = CreateMenu () ;
 
@@ -163,12 +164,12 @@ HMENU CreateMyMenu (HINSTANCE hInstance)
      {
           hBitmap = GetBitmapFont (i) ;
           AppendMenu (hMenuPopup, MF_BITMAP, IDM_FONT_COUR + i,
-                                  (PTSTR) (LONG) hBitmap) ;
+                                  (PTSTR)(uintptr_t)hBitmap) ;
      }
 
      hBitmap = StretchBitmap (LoadBitmap (hInstance, TEXT ("BitmapFont"))) ;
-     AppendMenu (hMenu, MF_BITMAP | MF_POPUP, (int) hMenuPopup,
-                        (PTSTR) (LONG) hBitmap) ;
+     AppendMenu (hMenu, MF_BITMAP | MF_POPUP, (int)(uintptr_t)hMenuPopup,
+                        (PTSTR)(uintptr_t)hBitmap) ;
      return hMenu ;
 }
 

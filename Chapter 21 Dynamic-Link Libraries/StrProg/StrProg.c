@@ -140,7 +140,7 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           switch (wParam)
           {
           case IDM_ENTER:
-               if (DialogBox (hInst, TEXT ("EnterDlg"), hwnd, &DlgProc))
+               if (DialogBox (hInst, TEXT ("EnterDlg"), hwnd, (DLGPROC)DlgProc))
                {
                     if (AddString (szString))
                          PostMessage (HWND_BROADCAST, iDataChangeMsg, 0, 0) ;
@@ -150,7 +150,7 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                break ;
 
           case IDM_DELETE:
-               if (DialogBox (hInst, TEXT ("DeleteDlg"), hwnd, &DlgProc))
+               if (DialogBox (hInst, TEXT ("DeleteDlg"), hwnd, (DLGPROC)DlgProc))
                {
                     if (DeleteString (szString))
                          PostMessage (HWND_BROADCAST, iDataChangeMsg, 0, 0) ;

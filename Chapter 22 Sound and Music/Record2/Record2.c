@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <mmsystem.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "../Record1/Resource.h"
 
 UINT_PTR CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
@@ -73,7 +74,7 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			dwError = mciSendCommand(0, MCI_OPEN,
 				MCI_WAIT | MCI_OPEN_TYPE | MCI_OPEN_ELEMENT,
-				(DWORD)(LPMCI_OPEN_PARMS)& mciOpen);
+				(DWORD)(uintptr_t)(LPMCI_OPEN_PARMS)& mciOpen);
 			if (dwError != 0)
 			{
 				ShowError(hwnd, dwError);
@@ -85,12 +86,12 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			// Begin recording
 
-			mciRecord.dwCallback = (DWORD)hwnd;
+			mciRecord.dwCallback = (DWORD)(uintptr_t)hwnd;
 			mciRecord.dwFrom = 0;
 			mciRecord.dwTo = 0;
 
 			mciSendCommand(wDeviceID, MCI_RECORD, MCI_NOTIFY,
-				(DWORD)(LPMCI_RECORD_PARMS)& mciRecord);
+				(DWORD)(uintptr_t)(LPMCI_RECORD_PARMS)& mciRecord);
 
 			// Enable and disable buttons
 
@@ -110,7 +111,7 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			mciGeneric.dwCallback = 0;
 
 			mciSendCommand(wDeviceID, MCI_STOP, MCI_WAIT,
-				(DWORD)(LPMCI_GENERIC_PARMS)& mciGeneric);
+				(DWORD)(uintptr_t)(LPMCI_GENERIC_PARMS)& mciGeneric);
 
 			// Save the file
 
@@ -118,12 +119,12 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			mciSave.lpfilename = szFileName;
 
 			mciSendCommand(wDeviceID, MCI_SAVE, MCI_WAIT | MCI_SAVE_FILE,
-				(DWORD)(LPMCI_SAVE_PARMS)& mciSave);
+				(DWORD)(uintptr_t)(LPMCI_SAVE_PARMS)& mciSave);
 
 			// Close the waveform device
 
 			mciSendCommand(wDeviceID, MCI_CLOSE, MCI_WAIT,
-				(DWORD)(LPMCI_GENERIC_PARMS)& mciGeneric);
+				(DWORD)(uintptr_t)(LPMCI_GENERIC_PARMS)& mciGeneric);
 
 			// Enable and disable buttons
 
@@ -148,7 +149,7 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			dwError = mciSendCommand(0, MCI_OPEN,
 				MCI_WAIT | MCI_OPEN_ELEMENT,
-				(DWORD)(LPMCI_OPEN_PARMS)& mciOpen);
+				(DWORD)(uintptr_t)(LPMCI_OPEN_PARMS)& mciOpen);
 
 			if (dwError != 0)
 			{
@@ -161,12 +162,12 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			// Begin playing
 
-			mciPlay.dwCallback = (DWORD)hwnd;
+			mciPlay.dwCallback = (DWORD)(uintptr_t)hwnd;
 			mciPlay.dwFrom = 0;
 			mciPlay.dwTo = 0;
 
 			mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
-				(DWORD)(LPMCI_PLAY_PARMS)& mciPlay);
+				(DWORD)(uintptr_t)(LPMCI_PLAY_PARMS)& mciPlay);
 
 			// Enable and disable buttons
 
@@ -187,7 +188,7 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				mciGeneric.dwCallback = 0;
 
 				mciSendCommand(wDeviceID, MCI_PAUSE, MCI_WAIT,
-					(DWORD)(LPMCI_GENERIC_PARMS)& mciGeneric);
+					(DWORD)(uintptr_t)(LPMCI_GENERIC_PARMS)& mciGeneric);
 
 				SetDlgItemText(hwnd, IDC_PLAY_PAUSE, TEXT("Resume"));
 				bPaused = TRUE;
@@ -195,12 +196,12 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			else
 				// Begin playing again
 			{
-				mciPlay.dwCallback = (DWORD)hwnd;
+				mciPlay.dwCallback = (DWORD)(uintptr_t)hwnd;
 				mciPlay.dwFrom = 0;
 				mciPlay.dwTo = 0;
 
 				mciSendCommand(wDeviceID, MCI_PLAY, MCI_NOTIFY,
-					(DWORD)(LPMCI_PLAY_PARMS)& mciPlay);
+					(DWORD)(uintptr_t)(LPMCI_PLAY_PARMS)& mciPlay);
 
 				SetDlgItemText(hwnd, IDC_PLAY_PAUSE, TEXT("Pause"));
 				bPaused = FALSE;
@@ -214,10 +215,10 @@ UINT_PTR CALLBACK DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			mciGeneric.dwCallback = 0;
 
 			mciSendCommand(wDeviceID, MCI_STOP, MCI_WAIT,
-				(DWORD)(LPMCI_GENERIC_PARMS)& mciGeneric);
+				(DWORD)(uintptr_t)(LPMCI_GENERIC_PARMS)& mciGeneric);
 
 			mciSendCommand(wDeviceID, MCI_CLOSE, MCI_WAIT,
-				(DWORD)(LPMCI_GENERIC_PARMS)& mciGeneric);
+				(DWORD)(uintptr_t)(LPMCI_GENERIC_PARMS)& mciGeneric);
 
 			// Enable and disable buttons
 

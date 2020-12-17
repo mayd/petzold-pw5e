@@ -258,7 +258,7 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
                return 0 ;
 
           case IDM_APP_ABOUT:
-               DialogBox (hInst, TEXT ("AboutBox"), hwnd, AboutProc) ;
+               DialogBox (hInst, TEXT ("AboutBox"), hwnd, (DLGPROC)AboutProc) ;
                return 0 ;
           }
           return 0 ;

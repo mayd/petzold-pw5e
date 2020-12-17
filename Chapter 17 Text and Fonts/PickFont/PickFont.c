@@ -122,7 +122,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		dp.iDevice = IDM_DEVICE_SCREEN;
 
 		hdlg = CreateDialogParam(((LPCREATESTRUCT)lParam)->hInstance,
-			szAppName, hwnd, DlgProc, (LPARAM)& dp);
+			szAppName, hwnd, (DLGPROC)DlgProc, (LPARAM)& dp);
 		return 0;
 
 	case WM_SETFOCUS:

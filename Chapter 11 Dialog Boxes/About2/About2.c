@@ -110,7 +110,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		switch (LOWORD(wParam))
 		{
 		case IDM_APP_ABOUT:
-			if (DialogBox(hInstance, TEXT("AboutBox"), hwnd, AboutDlgProc))
+			if (DialogBox(hInstance, TEXT("AboutBox"), hwnd, (DLGPROC)AboutDlgProc))
 				InvalidateRect(hwnd, NULL, TRUE);
 			return 0;
 		}

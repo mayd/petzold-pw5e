@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <tchar.h>
+#include <stdint.h>
 #include "./Resource.h"
 
 #define INIT_MENU_POS    0
@@ -317,7 +318,7 @@ LRESULT CALLBACK HelloWndProc(HWND hwnd, UINT message,
 
 		pHelloData->iColor = IDM_COLOR_BLACK;
 		pHelloData->clrText = RGB(0, 0, 0);
-		SetWindowLongPtr(hwnd, GWLP_USERDATA, (long)pHelloData);
+		SetWindowLongPtr(hwnd, GWLP_USERDATA, (long)(uintptr_t)pHelloData);
 
 		// Save some window handles
 
@@ -425,7 +426,7 @@ LRESULT CALLBACK RectWndProc(HWND hwnd, UINT message,
 		pRectData = (PRECTDATA)HeapAlloc(GetProcessHeap(),
 			HEAP_ZERO_MEMORY, sizeof(RECTDATA));
 
-		SetWindowLongPtr(hwnd, GWLP_USERDATA, (long)pRectData);
+		SetWindowLongPtr(hwnd, GWLP_USERDATA, (long)(uintptr_t)pRectData);
 
 		// Start the timer going
 

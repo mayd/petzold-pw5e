@@ -75,7 +75,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		switch (LOWORD(wParam))
 		{
 		case IDM_APP_ABOUT:
-			DialogBox(hInstance, TEXT("AboutBox"), hwnd, AboutDlgProc);
+			DialogBox(hInstance, TEXT("AboutBox"), hwnd, (DLGPROC)AboutDlgProc);
 			break;
 		}
 		return 0;

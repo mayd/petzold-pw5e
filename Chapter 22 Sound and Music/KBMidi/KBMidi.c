@@ -350,7 +350,7 @@ HMENU CreateTheMenu(int iNumDevs)
 	AppendMenu(hMenuPopup, MF_STRING | MF_CHECKED, IDM_CLOSE,
 		TEXT("&Closed"));
 
-	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hMenuPopup,
+	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)(uintptr_t)hMenuPopup,
 		TEXT("&Status"));
 
 	// Create "Device" popup menu
@@ -374,7 +374,7 @@ HMENU CreateTheMenu(int iNumDevs)
 	}
 
 	CheckMenuItem(hMenuPopup, 0, MF_BYPOSITION | MF_CHECKED);
-	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hMenuPopup,
+	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)(uintptr_t)hMenuPopup,
 		TEXT("&Device"));
 
 	// Create "Channel" popup menu
@@ -388,7 +388,7 @@ HMENU CreateTheMenu(int iNumDevs)
 			IDM_CHANNEL + i, szBuffer);
 	}
 
-	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hMenuPopup,
+	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)(uintptr_t)hMenuPopup,
 		TEXT("&Channel"));
 
 	// Create "Voice" popup menu
@@ -412,10 +412,10 @@ HMENU CreateTheMenu(int iNumDevs)
 
 		wsprintf(szBuffer, TEXT("&%c.\t%s"), 'A' + iFam,
 			fam[iFam].szFam);
-		AppendMenu(hMenuPopup, MF_STRING | MF_POPUP, (UINT)hMenuSubPopup,
+		AppendMenu(hMenuPopup, MF_STRING | MF_POPUP, (UINT)(uintptr_t)hMenuSubPopup,
 			szBuffer);
 	}
-	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hMenuPopup,
+	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)(uintptr_t)hMenuPopup,
 		TEXT("&Voice"));
 	return hMenu;
 }

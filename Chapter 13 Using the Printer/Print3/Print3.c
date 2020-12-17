@@ -69,7 +69,7 @@ BOOL PrintMyPage(HWND hwnd)
 
 	bUserAbort = FALSE;
 	hDlgPrint = CreateDialog(hInst, TEXT("PrintDlgBox"),
-		hwnd, PrintDlgProc);
+		hwnd, (DLGPROC)PrintDlgProc);
 
 	SetAbortProc(hdcPrn, AbortProc);
 

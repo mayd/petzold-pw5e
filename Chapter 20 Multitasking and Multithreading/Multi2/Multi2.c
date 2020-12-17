@@ -9,6 +9,7 @@
 #include <tchar.h>
 #include <math.h>
 #include <process.h>
+#include <stdint.h>
 
 typedef struct
 {
@@ -351,7 +352,7 @@ LRESULT APIENTRY WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			hwndChild[i] = CreateWindow(szChildClass[i], NULL,
 				WS_CHILDWINDOW | WS_BORDER | WS_VISIBLE,
 				0, 0, 0, 0,
-				hwnd, (HMENU)i, hInstance, NULL);
+				hwnd, (HMENU)(uintptr_t)i, hInstance, NULL);
 		}
 
 		return 0;

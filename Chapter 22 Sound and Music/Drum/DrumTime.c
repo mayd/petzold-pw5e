@@ -60,7 +60,7 @@ BOOL DrumBeginSequence(HWND hwnd)
 	timeBeginPeriod(uTimerRes);
 
 	uTimerID = timeSetEvent(max((UINT)uTimerRes, (UINT)drum.iMsecPerBeat),
-		uTimerRes, DrumTimerFunc, 0, TIME_ONESHOT);
+		uTimerRes, (LPTIMECALLBACK)DrumTimerFunc, 0, TIME_ONESHOT);
 
 	if (uTimerID == 0)
 	{
@@ -149,7 +149,7 @@ void CALLBACK DrumTimerFunc(UINT  uID, UINT uMsg, DWORD dwUser,
 	// Set a new timer event
 
 	uTimerID = timeSetEvent(max((int)uTimerRes, drum.iMsecPerBeat),
-		uTimerRes, DrumTimerFunc, 0, TIME_ONESHOT);
+		uTimerRes, (LPTIMECALLBACK)DrumTimerFunc, 0, TIME_ONESHOT);
 
 	if (uTimerID == 0)
 	{

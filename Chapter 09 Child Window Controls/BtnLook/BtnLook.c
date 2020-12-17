@@ -9,6 +9,7 @@
 #include <windowsx.h>
 #include <tchar.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 struct
 {
@@ -108,7 +109,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				WS_CHILD | WS_VISIBLE | button[i].iStyle,
 				cxChar, cyChar * (1 + 2 * i),
 				20 * cxChar, 7 * cyChar / 4,
-				hwnd, (HMENU)i,
+				hwnd, (HMENU)(uintptr_t)i,
 				((LPCREATESTRUCT)lParam)->hInstance, NULL);
 		return 0;
 
