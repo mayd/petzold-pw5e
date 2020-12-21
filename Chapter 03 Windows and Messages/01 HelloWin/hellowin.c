@@ -9,7 +9,6 @@
 #include <tchar.h>
 #include <stdlib.h>
 #include <mmsystem.h>
-#include <stdint.h>
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -53,7 +52,7 @@ int WINAPI _tWinMain(
 	}
 
 	HWND hwnd = CreateWindow(
-		(PCTSTR)(uintptr_t)atom,               // window class name or atom
+		app_name,                   // window class name or atom
 		TEXT("The Hello Program"),  // window caption
 		WS_OVERLAPPEDWINDOW,        // window style
 		CW_USEDEFAULT,              // initial x position

@@ -6,6 +6,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <windows.h>
+#include <windowsx.h>
 #include "StrLib.h"
 #include "Resource.h"
 
@@ -162,8 +163,8 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           return 0 ;
 
      case WM_SIZE:
-          cxClient = (int) LOWORD (lParam) ;
-          cyClient = (int) HIWORD (lParam) ;
+          cxClient = (int) GET_X_LPARAM (lParam) ;
+          cyClient = (int) GET_Y_LPARAM (lParam) ;
           return 0 ;
 
      case WM_PAINT:

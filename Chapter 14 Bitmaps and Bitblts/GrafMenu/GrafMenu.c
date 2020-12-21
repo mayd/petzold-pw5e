@@ -6,6 +6,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <windows.h>
+#include <windowsx.h>
 #include <stdint.h>
 #include "Resource.h"
 
@@ -186,8 +187,8 @@ HBITMAP StretchBitmap (HBITMAP hBitmap1)
 
           // Get the width and height of a system font character
 
-     cxChar = LOWORD (GetDialogBaseUnits ()) ;
-     cyChar = HIWORD (GetDialogBaseUnits ()) ;
+     cxChar = GET_X_LPARAM (GetDialogBaseUnits ()) ;
+     cyChar = GET_Y_LPARAM (GetDialogBaseUnits ()) ;
 
           // Create 2 memory DCs compatible with the display
 

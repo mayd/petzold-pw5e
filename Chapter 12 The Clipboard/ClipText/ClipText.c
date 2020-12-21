@@ -78,7 +78,7 @@ int WINAPI _tWinMain(
 
 LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-     static PTSTR pText ;
+     static PTSTR pText = NULL;
      BOOL         bEnable ;
      HGLOBAL      hGlobal ;
      HDC          hdc ;

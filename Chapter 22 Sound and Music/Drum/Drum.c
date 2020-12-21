@@ -5,6 +5,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <windowsx.h>
 #include <tchar.h>
 #include <stdlib.h>
 #include <string.h>
@@ -130,8 +131,8 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                // Other initialization
 
-          cxChar = LOWORD (GetDialogBaseUnits ()) ;
-          cyChar = HIWORD (GetDialogBaseUnits ()) ;
+          cxChar = GET_X_LPARAM (GetDialogBaseUnits ()) ;
+          cyChar = GET_Y_LPARAM (GetDialogBaseUnits ()) ;
 
           GetWindowRect (hwnd, &rect) ;
           MoveWindow (hwnd, rect.left, rect.top,
@@ -269,8 +270,8 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                // Convert mouse coordinates to grid coordinates
 
-          x =     LOWORD (lParam) / cxChar - 40 ;
-          y = 2 * HIWORD (lParam) / cyChar -  2 ;
+          x =     GET_X_LPARAM (lParam) / cxChar - 40 ;
+          y = 2 * GET_Y_LPARAM (lParam) / cyChar -  2 ;
 
                // Set a new number of beats of sequence
 

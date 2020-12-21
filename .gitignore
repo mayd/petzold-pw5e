@@ -33,6 +33,7 @@
 
 # Temporary files
 *.tmp
+*.emf
 
 # Unwanted folders
 Debug

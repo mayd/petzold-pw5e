@@ -52,19 +52,47 @@ Notes:
 There are limited links to websites or internet sources on this page. Links can
  go stale. A search engine is your friend.
 
-========================================================================================
+---
 
 Changes in my personal version of petzold-pw5e:
 -----------------------------------------------
 
-17 December 2020
+11 December 2020
 
 * Changed CMakeList.txt so that all resource files are compiled with MSYS2/MinGW.
 
-* Changed a line in HexCalc.dlg so that it compiles with MinGW windres resource compiler.
+* Changed a line in HexCalc.dlg so that it compiles with MinGW `windres` resource compiler.
 
-* Edited various example C source files to eliminate MinGW compiler warnings.
+17 December 2020
 
+* Edited various example C source files to eliminate MinGW compiler warnings. (Needs improvement.)
+
+21 December 2020
+
+* Reordered some targets in CMakeLists.txt to match order of examples in book.
+
+* Extended practice of naming executables for all examples to include a sequence number.
+
+* Removed spurious dependencies for some examples in CMakeLists.txt.
+
+* Corrected some C source files as per [FAQ for Programming Windows, 5th Edition](http://www.charlespetzold.com/pw5/pw5faq.html).
+
+* Corrected some C source files as per [Errata for Petzold's book "Programming Windows Fifth Edition"](http://www.computersciencelab.com/PetzoldErrata.htm).
+
+* Corrected some C source files as per [Programming Windows, Fifth Edition Errata Addendum](http://jasondoucette.com/books/pw5/pw5errata.html).
+
+* Identified examples described in the book that do not work properly on Windows 10: 
+    * Chapter 14 Bitmaps and Bitblts/Bounce1
+    * Chapter 16 The Palette Manager/SysPal1
+    * Chapter 16 The Palette Manager/SysPal2
+    * Chapter 16 The Palette Manager/SysPal3
+    * Chapter 16 The Palette Manager/Bounce
+    * Chapter 16 The Palette Manager/Fader
+    * Chapter 16 The Palette Manager/AllColor
+    * Chapter 16 The Palette Manager/Pipes
+    * Chapter 16 The Palette Manager/Tunnel
+    * Chapter 23 A Taste of the Internet/NetTime
+    * Chapter 23 A Taste of the Internet/UpdDemo
 
 Bash commands to compile all examples with MSYS2/MinGW:
 -------------------------------------------------------

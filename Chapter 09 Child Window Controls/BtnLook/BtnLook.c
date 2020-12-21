@@ -9,7 +9,6 @@
 #include <windowsx.h>
 #include <tchar.h>
 #include <stdlib.h>
-#include <stdint.h>
 
 struct
 {
@@ -30,7 +29,7 @@ button[] =
 	{BS_OWNERDRAW,       TEXT("OWNERDRAW"})
 };
 
-#define NUM _countof(sizeof button)
+#define NUM _countof(button)
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -100,16 +99,16 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		cxChar = LOWORD(GetDialogBaseUnits());
-		cyChar = HIWORD(GetDialogBaseUnits());
+		cxChar = GET_X_LPARAM(GetDialogBaseUnits());
+		cyChar = GET_Y_LPARAM(GetDialogBaseUnits());
 
-		for (unsigned i = 0; i < NUM; i++)
+		for (INT_PTR i = 0; i < NUM; i++)
 			hwndButton[i] = CreateWindowEx(0, TEXT("button"),
 				button[i].szText,
 				WS_CHILD | WS_VISIBLE | button[i].iStyle,
 				cxChar, cyChar * (1 + 2 * i),
 				20 * cxChar, 7 * cyChar / 4,
-				hwnd, (HMENU)(uintptr_t)i,
+				hwnd, (HMENU)i,
 				((LPCREATESTRUCT)lParam)->hInstance, NULL);
 		return 0;
 

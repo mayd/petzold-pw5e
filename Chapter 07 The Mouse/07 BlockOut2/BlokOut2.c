@@ -5,6 +5,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <windowsx.h>
 #include <tchar.h>
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -81,8 +82,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_LBUTTONDOWN:
-		ptBeg.x = ptEnd.x = LOWORD(lParam);
-		ptBeg.y = ptEnd.y = HIWORD(lParam);
+		ptBeg.x = ptEnd.x = GET_X_LPARAM(lParam);
+		ptBeg.y = ptEnd.y = GET_Y_LPARAM(lParam);
 
 		DrawBoxOutline(hwnd, ptBeg, ptEnd);
 
@@ -99,8 +100,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			DrawBoxOutline(hwnd, ptBeg, ptEnd);
 
-			ptEnd.x = LOWORD(lParam);
-			ptEnd.y = HIWORD(lParam);
+			ptEnd.x = GET_X_LPARAM(lParam);
+			ptEnd.y = GET_Y_LPARAM(lParam);
 
 			DrawBoxOutline(hwnd, ptBeg, ptEnd);
 		}
@@ -112,8 +113,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DrawBoxOutline(hwnd, ptBeg, ptEnd);
 
 			ptBoxBeg = ptBeg;
-			ptBoxEnd.x = LOWORD(lParam);
-			ptBoxEnd.y = HIWORD(lParam);
+			ptBoxEnd.x = GET_X_LPARAM(lParam);
+			ptBoxEnd.y = GET_Y_LPARAM(lParam);
 
 			ReleaseCapture();
 			SetCursor(LoadCursor(NULL, IDC_ARROW));

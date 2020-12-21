@@ -11,7 +11,7 @@
 #include <process.h>
 #include "Resource.h"
 
-  // User-defined messages used in WndProc
+// User-defined messages used in WndProc
 
 #define WM_USER_CHECKFILES (WM_USER + 1)
 #define WM_USER_GETFILES   (WM_USER + 2)
@@ -22,7 +22,7 @@
 #define DIRECTORY TEXT ("cpetzold.com/ProgWin/UpdDemo")
 #define TEMPLATE  TEXT ("UD??????.TXT")
 
-	 // Structures used for storing filenames and contents
+// Structures used for storing filenames and contents
 
 typedef struct
 {

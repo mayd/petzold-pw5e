@@ -6,6 +6,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <tchar.h>
 #include <windows.h>
+#include <windowsx.h>
 #include <stdlib.h>      // for abs definition
 #include "Resource.h"
 
@@ -132,8 +133,8 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           if (bCapturing)
           {
                bBlocking = TRUE ;
-               ptBeg.x = LOWORD (lParam) ;
-               ptBeg.y = HIWORD (lParam) ;
+               ptBeg.x = GET_X_LPARAM (lParam) ;
+               ptBeg.y = GET_Y_LPARAM (lParam) ;
                ptEnd = ptBeg ;
                InvertBlock (hwndScr, hwnd, ptBeg, ptEnd) ;
           }
@@ -143,8 +144,8 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           if (bBlocking)
           {
                InvertBlock (hwndScr, hwnd, ptBeg, ptEnd) ;
-               ptEnd.x = LOWORD (lParam) ;
-               ptEnd.y = HIWORD (lParam) ;
+               ptEnd.x = GET_X_LPARAM (lParam) ;
+               ptEnd.y = GET_Y_LPARAM (lParam) ;
                InvertBlock (hwndScr, hwnd, ptBeg, ptEnd) ;
           }
           return 0 ;
@@ -154,8 +155,8 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
           if (bBlocking)
           {
                InvertBlock (hwndScr, hwnd, ptBeg, ptEnd) ;
-               ptEnd.x = LOWORD (lParam) ;
-               ptEnd.y = HIWORD (lParam) ;
+               ptEnd.x = GET_X_LPARAM (lParam) ;
+               ptEnd.y = GET_Y_LPARAM (lParam) ;
 
                if (hBitmap)
                {

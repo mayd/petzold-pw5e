@@ -6,7 +6,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <tchar.h>
-#include <stdint.h>
 
 #define DIVISIONS 5
 
@@ -75,7 +74,8 @@ int WINAPI _tWinMain(
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static HWND hwndChild[DIVISIONS][DIVISIONS];
-	int         cxBlock, cyBlock, x, y;
+	int         cxBlock, cyBlock;
+   INT_PTR x, y;
 
 	switch (message)
 	{
@@ -85,7 +85,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				hwndChild[x][y] = CreateWindow(szChildClass, NULL,
 					WS_CHILDWINDOW | WS_VISIBLE,
 					0, 0, 0, 0,
-					hwnd, (HMENU)(uintptr_t)(y << 8 | x),
+					hwnd, (HMENU)(y << 8 | x),
 					(HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE),
 					NULL);
 		return 0;
