@@ -75,6 +75,8 @@ Changes in my personal version of petzold-pw5e:
 
 * Removed spurious dependencies for some examples in CMakeLists.txt.
 
+* Added some missing targets for some examples in CMakeLists.txt.
+
 * Corrected some C source files as per [FAQ for Programming Windows, 5th Edition](http://www.charlespetzold.com/pw5/pw5faq.html).
 
 * Corrected some C source files as per [Errata for Petzold's book "Programming Windows Fifth Edition"](http://www.computersciencelab.com/PetzoldErrata.htm).
@@ -93,6 +95,11 @@ Changes in my personal version of petzold-pw5e:
     * Chapter 16 The Palette Manager/Tunnel
     * Chapter 23 A Taste of the Internet/NetTime
     * Chapter 23 A Taste of the Internet/UpdDemo
+
+5 January 2021
+
+* Update list of TIME servers for NetTime demo. (NB this TCP service is deprecated.)
+* Modified UpdDEmo demo to connect to iFTP service on localhost (but still not working)
 
 Bash commands to compile all examples with MSYS2/MinGW:
 -------------------------------------------------------

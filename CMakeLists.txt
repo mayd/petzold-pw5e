@@ -36,15 +36,15 @@ add_executable(002_ScrnSize WIN32 "Chapter 02 An Introduction to Unicode/01 Scrn
 
 # ================================================================== Chapter 03
 # winmm.lib    - required library
-# HelloWin.wav - to be copied to exe directory
+# HelloWin.wav - to be copied to build folder
 
 add_executable(003_HelloWin WIN32 "Chapter 03 Windows and Messages/01 HelloWin/HelloWin.c"
         "Chapter 03 Windows and Messages/01 HelloWin/HelloWin.wav")
-target_link_libraries(003_HelloWin winmm.lib)
+target_link_libraries(003_HelloWin winmm)
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/HelloWin.wav"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 03 Windows and Messages/01 HelloWin/HelloWin.wav" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying HelloWin.wav to exe directory"
+        COMMENT "Copying HelloWin.wav to build folder"
         DEPENDS "Chapter 03 Windows and Messages/01 HelloWin/HelloWin.wav")
 add_custom_target(custom_target_hello_win ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/HelloWin.wav")
@@ -109,11 +109,11 @@ add_executable(032_WhatClr WIN32 "Chapter 08 The Timer/WhatClr.c")
 add_executable(033_BtnLook WIN32 "Chapter 09 Child Window Controls/BtnLook/BtnLook.c")       # Does not work under Windows 10 
 add_executable(034_OwnDraw WIN32 "Chapter 09 Child Window Controls/OwnDraw/OwnDraw.c")
 add_executable(035_Colors1 WIN32 "Chapter 09 Child Window Controls/Colors1/Colors1.c")
-target_link_libraries(035_Colors1 Comctl32.lib)
+target_link_libraries(035_Colors1 Comctl32)
 add_executable(036_PopPad1 WIN32 "Chapter 09 Child Window Controls/PopPad1/PopPad1.c")
 add_executable(037_Environ WIN32 "Chapter 09 Child Window Controls/Environ/Environ.c")
 add_executable(038_Head WIN32 "Chapter 09 Child Window Controls/Head/Head.c")
-target_link_libraries(038_Head Comctl32.lib)
+target_link_libraries(038_Head Comctl32)
 
 # ================================================================== Chapter 10
 
@@ -266,7 +266,7 @@ add_custom_command(
         "${CMAKE_CURRENT_BINARY_DIR}/Chapter 15 The Device Independent Bitmap/Apollo11/ApolloTD.bmp"
         COMMAND ${CMAKE_COMMAND} -E copy ${APOLLO_DEPENDENCIES11} "${CMAKE_CURRENT_BINARY_DIR}"
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        COMMENT "Copying Apollo11 bmo files to exe directory"
+        COMMENT "Copying Apollo11 bmp files to build folder"
         DEPENDS ${APOLLO_DEPENDENCIES11})
 add_custom_target(custom_target_apollo11 ALL DEPENDS "${APOLLO_DEPENDENCIES11}")
 add_executable(074_Apollo11 WIN32 "Chapter 15 The Device Independent Bitmap/Apollo11/Apollo11.c"   # Does not (quite) work under Windows 10
@@ -412,7 +412,7 @@ add_executable(111_Emf02 WIN32 "Chapter 18 Metafiles/Emf02/Emf02.c")
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Emf02.emf"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 18 Metafiles/Emf02/Emf02.emf" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying Emf02.emf to exe directory"
+        COMMENT "Copying Emf02.emf to build folder"
         DEPENDS "Chapter 18 Metafiles/Emf02/Emf02.emf")
 add_custom_target(custom_target_emf02 ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Emf02.emf")
@@ -422,7 +422,7 @@ add_executable(112_Emf03 WIN32 "Chapter 18 Metafiles/Emf03/Emf03.c"
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Emf03.emf"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 18 Metafiles/Emf03/Emf03.emf" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying Emf03.emf to exe directory"
+        COMMENT "Copying Emf03.emf to build folder"
         DEPENDS "Chapter 18 Metafiles/Emf03/Emf03.emf")
 add_custom_target(custom_target_emf03 ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Emf03.emf")
@@ -432,7 +432,7 @@ add_executable(113_Emf04 WIN32 "Chapter 18 Metafiles/Emf04/Emf04.c"
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Emf04.emf"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 18 Metafiles/Emf04/Emf04.emf" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying Emf04.emf to exe directory"
+        COMMENT "Copying Emf04.emf to build folder"
         DEPENDS "Chapter 18 Metafiles/Emf04/Emf04.emf")
 add_custom_target(custom_target_emf04 ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Emf04.emf")
@@ -448,7 +448,7 @@ add_executable(116_Emf07 WIN32 "Chapter 18 Metafiles/Emf07/Emf07.c"
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Emf07.emf"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 18 Metafiles/Emf07/Emf07.emf" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying Emf07.emf to exe directory"
+        COMMENT "Copying Emf07.emf to build folder"
         DEPENDS "Chapter 18 Metafiles/Emf07/Emf07.emf")
 add_custom_target(custom_target_emf07 ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Emf07.emf")
@@ -465,7 +465,7 @@ add_executable(118_Emf08 WIN32 "Chapter 18 Metafiles/Emf08/Emf08.c"
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Emf08.emf"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 18 Metafiles/Emf08/Emf08.emf" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying Emf08.emf to exe directory"
+        COMMENT "Copying Emf08.emf to build folder"
         DEPENDS "Chapter 18 Metafiles/Emf08/Emf08.emf")
 add_custom_target(custom_target_emf08 ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Emf08.emf")
@@ -493,7 +493,7 @@ add_executable(121_Emf11 WIN32 "Chapter 18 Metafiles/Emf11/Emf11.c"
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Emf11.emf"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 18 Metafiles/Emf11/Emf11.emf" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying Emf11.emf to exe directory"
+        COMMENT "Copying Emf11.emf to build folder"
         DEPENDS "Chapter 18 Metafiles/Emf11/Emf11.emf")
 add_custom_target(custom_target_emf11 ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Emf11.emf")
@@ -507,7 +507,7 @@ add_executable(122_Emf12 WIN32 "Chapter 18 Metafiles/Emf12/Emf12.c"
 add_custom_command(
         OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/Emf12.emf"
         COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Chapter 18 Metafiles/Emf12/Emf12.emf" "${CMAKE_CURRENT_BINARY_DIR}"
-        COMMENT "Copying Emf12.emf to exe directory"
+        COMMENT "Copying Emf12.emf to build folder"
         DEPENDS "Chapter 18 Metafiles/Emf12/Emf12.emf")
 add_custom_target(custom_target_emf12 ALL
         DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Emf12.emf")
@@ -535,7 +535,7 @@ add_executable(129_BigJob2 WIN32 "Chapter 20 Multitasking and Multithreading/Big
 
 # ================================================================== Chapter 21
 
-# BitLib.dll - required to be copied to exe directory
+# BitLib.dll - required to be copied to build folder
 
 add_executable(130_EdrTest WIN32 "Chapter 21 Dynamic-Link Libraries/EdrTest/EdrTest.c"
         "Chapter 21 Dynamic-Link Libraries/EdrTest/EdrLib.c")
@@ -553,34 +553,34 @@ add_library(BitLib SHARED "Chapter 21 Dynamic-Link Libraries/ShowBit/BitLib.rc")
 add_executable(133_TestMci WIN32 "Chapter 22 Sound and Music/TestMCI/TestMci.c"
         "Chapter 22 Sound and Music/TestMCI/Resource.h"
         "Chapter 22 Sound and Music/TestMCI/TestMCI.rc")
-target_link_libraries(133_TestMci winmm.lib)
+target_link_libraries(133_TestMci winmm)
 add_executable(134_SineWaveGen WIN32 "Chapter 22 Sound and Music/SineWaveGen/SineWaveGen.c"
         "Chapter 22 Sound and Music/SineWaveGen/Resource.h"
         "Chapter 22 Sound and Music/SineWaveGen/SineWaveGen.rc")
-target_link_libraries(134_SineWaveGen winmm.lib)
+target_link_libraries(134_SineWaveGen winmm)
 add_executable(135_Record1 WIN32 "Chapter 22 Sound and Music/Record1/Record1.c"
         "Chapter 22 Sound and Music/Record1/Resource.h"
         "Chapter 22 Sound and Music/Record1/Record.rc")
-target_link_libraries(135_Record1 winmm.lib)
+target_link_libraries(135_Record1 winmm)
 add_executable(136_Record2 WIN32 "Chapter 22 Sound and Music/Record2/Record2.c"
         "Chapter 22 Sound and Music/Record1/Resource.h"
         "Chapter 22 Sound and Music/Record1/Record.rc")
-target_link_libraries(136_Record2 winmm.lib)
+target_link_libraries(136_Record2 winmm)
 add_executable(137_Record3 WIN32 "Chapter 22 Sound and Music/Record3/Record3.c"
         "Chapter 22 Sound and Music/Record1/Resource.h"
         "Chapter 22 Sound and Music/Record1/Record.rc")
-target_link_libraries(137_Record3 winmm.lib)
+target_link_libraries(137_Record3 winmm)
 add_executable(138_AddSynth WIN32 "Chapter 22 Sound and Music/AddSynth/AddSynth.c"
         "Chapter 22 Sound and Music/AddSynth/AddSynth.h"
         "Chapter 22 Sound and Music/AddSynth/Resource.h"
         "Chapter 22 Sound and Music/AddSynth/AddSynth.rc")
-target_link_libraries(138_AddSynth winmm.lib)
+target_link_libraries(138_AddSynth winmm)
 add_executable(139_WakeUp WIN32 "Chapter 22 Sound and Music/WakeUp/WakeUp.c")
-target_link_libraries(139_WakeUp winmm.lib comctl32.lib)
+target_link_libraries(139_WakeUp winmm comctl32)
 add_executable(140_BachTocc WIN32 "Chapter 22 Sound and Music/BachTocc/BachTocc.c")
-target_link_libraries(140_BachTocc winmm.lib)
+target_link_libraries(140_BachTocc winmm)
 add_executable(141_KBMidi WIN32 "Chapter 22 Sound and Music/KBMidi/KBMidi.c")
-target_link_libraries(141_KBMidi winmm.lib)
+target_link_libraries(141_KBMidi winmm)
 add_executable(142_Drum WIN32 "Chapter 22 Sound and Music/Drum/Drum.c"
         "Chapter 22 Sound and Music/Drum/DrumFile.c"
         "Chapter 22 Sound and Music/Drum/DrumFile.h"
@@ -589,17 +589,17 @@ add_executable(142_Drum WIN32 "Chapter 22 Sound and Music/Drum/Drum.c"
         "Chapter 22 Sound and Music/Drum/Resource.h"
         "Chapter 22 Sound and Music/Drum/Drum.ico"
         "Chapter 22 Sound and Music/Drum/Drum.rc")
-target_link_libraries(142_Drum winmm.lib)
+target_link_libraries(142_Drum winmm)
 
 # ================================================================== Chapter 23
 
 add_executable(143_NetTime WIN32 "Chapter 23 A Taste of the Internet/NetTime/NetTime.c"                 # Does not (quite) work under Windows 10
         "Chapter 23 A Taste of the Internet/NetTime/NetTime.rc"
         "Chapter 23 A Taste of the Internet/NetTime/Resource.h")
-target_link_libraries(143_NetTime Ws2_32.lib)
+target_link_libraries(143_NetTime Ws2_32)
 add_executable(144_UpdDemo WIN32 "Chapter 23 A Taste of the Internet/UpdDemo/UpdDemo.c"                 # Does not (quite) work under Windows 10
         "Chapter 23 A Taste of the Internet/UpdDemo/Resource.h"
         "Chapter 23 A Taste of the Internet/UpdDemo/UpdDemo.rc")
-target_link_libraries(144_UpdDemo Wininet.lib)
+target_link_libraries(144_UpdDemo Ws2_32 Wininet)
 
 # ========================================================================= EOF

@@ -7,7 +7,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <winsock.h>
-#include "./resource.h"
+#include "Resource.h"
 
 #define WM_SOCKET_NOTIFY (WM_USER + 1)
 #define ID_TIMER         1

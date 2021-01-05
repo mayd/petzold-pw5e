@@ -18,9 +18,11 @@
 
 // Information for FTP download
 
-#define FTPSERVER TEXT ("ftp.cpetzold.com")
-#define DIRECTORY TEXT ("cpetzold.com/ProgWin/UpdDemo")
-#define TEMPLATE  TEXT ("UD??????.TXT")
+// NB Need to set up FTP service on localhost.
+//
+#define FTPSERVER TEXT ("127.0.0.1")
+#define DIRECTORY TEXT ("download")
+#define TEMPLATE  TEXT ("FILE???.TXT")
 
 // Structures used for storing filenames and contents
 
@@ -322,6 +324,9 @@ void FtpThread(PVOID parg)
 	hFtpSession = InternetConnect(hIntSession, FTPSERVER,
 		INTERNET_DEFAULT_FTP_PORT,
 		NULL, NULL, INTERNET_SERVICE_FTP, 0, 0);
+
+   // Check if connection succeeded.
+ 
 	if (hFtpSession == NULL)
 	{
 		InternetCloseHandle(hIntSession);
@@ -355,7 +360,7 @@ void FtpThread(PVOID parg)
 			DIRECTORY);
 		ButtonSwitch(hwndStatus, hwndButton, szBuffer);
 		_endthread();
-	}
+ }
 
 	SetWindowText(hwndStatus, TEXT("Directory found..."));
 
