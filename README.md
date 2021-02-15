@@ -105,6 +105,7 @@ Bash commands to compile all examples with MSYS2/MinGW:
 -------------------------------------------------------
 
     git clone https://github.com/mayd/petzold-pw5e
+    cd petzold-pw5e
     mkdir build
     cd build
     cmake .. -G "MinGW Makefiles"
