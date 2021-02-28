@@ -6,7 +6,11 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <windowsx.h>
+#include <dwmapi.h>
 #include <tchar.h>
+
+#define RECTWIDTH(rc)  (rc.right - rc.left)
+#define RECTHEIGHT(rc) (rc.bottom - rc.top)
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -45,6 +49,9 @@ int WINAPI _tWinMain(
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		NULL, NULL, hInstance, NULL);
 
+  BOOL disabled = TRUE;
+  DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &disabled, sizeof(disabled));
+
 	ShowWindow(hwnd, nShowCmd);
 	UpdateWindow(hwnd);
 
@@ -66,12 +73,12 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		cxSource = GetSystemMetrics(SM_CXSIZEFRAME) +
-			GetSystemMetrics(SM_CXSIZE);
+		cxSource = GetSystemMetrics(SM_CXSIZEFRAME) + 
+			GetSystemMetrics(SM_CXSMSIZE);
 
 		cySource = GetSystemMetrics(SM_CYSIZEFRAME) +
-			GetSystemMetrics(SM_CYCAPTION);
-		return 0;
+			GetSystemMetrics(SM_CYSMSIZE);
+	return 0;
 
 	case WM_SIZE:
 		cxClient = GET_X_LPARAM(lParam);
@@ -85,8 +92,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		for (y = 0; y < cyClient; y += cySource)
 			for (x = 0; x < cxClient; x += cxSource)
 			{
-				BitBlt(hdcClient, x, y, cxSource, cySource,
-					hdcWindow, 0, 0, SRCCOPY);
+				BitBlt(hdcClient, x, y, cxSource, cySource, hdcWindow, 8, 0, SRCCOPY);
 			}
 
 		ReleaseDC(hwnd, hdcWindow);
