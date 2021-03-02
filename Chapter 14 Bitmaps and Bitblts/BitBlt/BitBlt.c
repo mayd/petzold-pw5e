@@ -9,9 +9,6 @@
 #include <dwmapi.h>
 #include <tchar.h>
 
-#define RECTWIDTH(rc)  (rc.right - rc.left)
-#define RECTHEIGHT(rc) (rc.bottom - rc.top)
-
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 int WINAPI _tWinMain(

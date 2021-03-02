@@ -219,6 +219,7 @@ add_executable(059_PopPrnt WIN32 "Chapter 13 Using the Printer/PopPrnt/PopPrnt.c
 add_executable(060_BitBlt WIN32 "Chapter 14 Bitmaps and Bitblts/BitBlt/BitBlt.c")
 target_link_libraries(060_BitBlt dwmapi)
 add_executable(061_Stretch WIN32 "Chapter 14 Bitmaps and Bitblts/Stretch/Stretch.c")
+target_link_libraries(061_Stretch dwmapi)
 add_executable(062_Bricks1 WIN32 "Chapter 14 Bitmaps and Bitblts/Bricks1/Bricks1.c"
         "Chapter 14 Bitmaps and Bitblts/Bricks1/Resource.h"
         "Chapter 14 Bitmaps and Bitblts/Bricks1/Bricks1.rc"

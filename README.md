@@ -108,6 +108,10 @@ Changes in my personal version of petzold-pw5e:
   Capturing the icon from the titlebar is also complicated by DWM due to a timing issue when window is created.
   See discussion on *Stack Overflow* [Why this BitBlt example doesn't work anymore?](https://stackoverflow.com/questions/48068664/why-this-bitblt-example-doesnt-work-anymore).
 
+2 March 2021
+
+* Modified "Chapter 14 Bitmaps and Bitblts/Stretch" example slightly to work better with Desktop Windows Manager (DWM).
+
 Bash commands to compile all examples with MSYS2/MinGW:
 -------------------------------------------------------
 

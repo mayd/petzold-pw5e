@@ -6,6 +6,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <windowsx.h>
+#include <dwmapi.h>
 #include <tchar.h>
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -45,6 +46,9 @@ int WINAPI _tWinMain(
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		NULL, NULL, hInstance, NULL);
 
+  BOOL disabled = TRUE;
+  DwmSetWindowAttribute(hwnd, DWMWA_TRANSITIONS_FORCEDISABLED, &disabled, sizeof(disabled));
+
 	ShowWindow(hwnd, nShowCmd);
 	UpdateWindow(hwnd);
 
@@ -66,10 +70,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		cxSource = GetSystemMetrics(SM_CXSIZEFRAME) +
-			GetSystemMetrics(SM_CXSIZE);
+			GetSystemMetrics(SM_CXSMSIZE);
 
 		cySource = GetSystemMetrics(SM_CYSIZEFRAME) +
-			GetSystemMetrics(SM_CYCAPTION);
+			GetSystemMetrics(SM_CYSMSIZE);
 		return 0;
 
 	case WM_SIZE:
@@ -82,7 +86,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		hdcWindow = GetWindowDC(hwnd);
 
 		StretchBlt(hdcClient, 0, 0, cxClient, cyClient,
-			hdcWindow, 0, 0, cxSource, cySource, MERGECOPY);
+			hdcWindow, 8, 0, cxSource, cySource, MERGECOPY);
 
 		ReleaseDC(hwnd, hdcWindow);
 		EndPaint(hwnd, &ps);
